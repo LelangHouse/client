@@ -32,7 +32,7 @@
     <div class="card-body pb-4">
       <div class="tab-content" id="pills-tabContent">
         <LoginForm v-show="displayLogin" @set-login="setLogin"></LoginForm>
-        <RegisterForm v-show="displayRegister"></RegisterForm>
+        <RegisterForm v-show="displayRegister" @set-login="setLogin"></RegisterForm>
       </div>
     </div>
   </div>

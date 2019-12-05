@@ -40,6 +40,7 @@
 
 <script>
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   name: "LoginForm",
@@ -64,21 +65,20 @@ export default {
           this.$emit("set-login");
           this.emailLogin = "";
           this.passwordLogin = "";
-          // Swal.fire({
-          //   icon: "success",
-          //   title: `Login Successful, Welcome`,
-          //   showConfirmButton: false,
-          //   timer: 1500
-          // });
+          Swal.fire({
+            icon: "success",
+            title: `Login Successful, Welcome`,
+            showConfirmButton: false,
+            timer: 1500
+          });
         })
         .catch(err => {
           console.log(err);
-          this.$emit("set-login");
-          // Swal.fire({
-          //   icon: "error",
-          //   title: "Oops...",
-          //   text: "Wrong Email or Password"
-          // });
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Wrong Email or Password"
+          });
         });
     }
   }

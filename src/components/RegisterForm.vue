@@ -5,7 +5,7 @@
     role="tabpanel"
     aria-labelledby="pills-register-tab"
   >
-    <form>
+    <form v-on:submit.prevent="register">
       <div class="form-group">
         <input
           type="text"
@@ -13,6 +13,7 @@
           id="name"
           class="form-control"
           placeholder="Username"
+          v-model="username"
           required
           autofocus
         />
@@ -25,6 +26,7 @@
           id="email"
           class="form-control"
           placeholder="Email"
+          v-model="email"
           required
         />
       </div>
@@ -35,6 +37,7 @@
           id="phone"
           class="form-control"
           placeholder="Phone"
+          v-model="phone"
           required
         />
       </div>
@@ -46,6 +49,7 @@
           id="password"
           class="form-control"
           placeholder="Set a password"
+          v-model="password"
           required
         />
       </div>
@@ -58,8 +62,58 @@
 </template>
 
 <script>
+import axios from "axios";
+import Swal from "sweetalert2";
+
 export default {
-  name: "RegisterForm"
+  name: "RegisterForm",
+  data() {
+    return {
+      email: "",
+      password: "",
+      username: "",
+      phone: ""
+    };
+  },
+  methods: {
+    register() {
+      axios({
+        url: "http://localhost:3000/users/register",
+        method: "POST",
+        data: {
+          email: this.email,
+          password: this.password,
+          username: this.username,
+          phone: this.phone
+        }
+      })
+        .then(({ data }) => {
+          localStorage.setItem("token", data.token);
+          this.$emit("set-login");
+          console.log(`register successful`);
+          this.email = "";
+          this.password = "";
+          this.phone = "";
+          this.username = "";
+          Swal.fire({
+            icon: "success",
+            title: "Registration successful",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text:
+              "The email that you use is already registered in our database, please use other email.",
+            footer: "<a href>Why do I have this issue?</a>"
+          });
+        });
+    }
+  }
 };
 </script>
 
