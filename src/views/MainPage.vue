@@ -2,38 +2,56 @@
   <div>
     <div class="container mt-5">
       <div class="card-columns">
-        <div class="card mt-3">
-          <img
-            class="card-img-top"
-            alt="Card image cap"
-            src="https://images.unsplash.com/photo-1532910404247-7ee9488d7292?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2682&q=80"
-            width="100px"
-          />
-          <div class="card-body">
-            <h3 class="card-title">NAMA BARANG</h3>
-            <div class="row mb-2">
-              <div class="col-sm-4">Offered Price</div>
-              <div class="col-sm-8">RP.0001010</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-sm-4">Highest Bid</div>
-              <div class="col-sm-8">Rp.10201</div>
-            </div>
-          </div>
-          <a href="#" style="text-decoration: none"
-            ><button type="button" class="btn btn-info btn-lg btn-block">
-              Submit a Bid
-            </button></a
-          >
-        </div>
+        <ProductCard
+          v-for="(data, index) in property"
+          :key=index
+          :databapak=data
+        ></ProductCard>
       </div>
+    </div>
+    <div :show-update-modal="updateBid">
+      <SubmitBidModal></SubmitBidModal>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import ProductCard from "../components/ProductCard";
+import SubmitBidModal from "../components/SubmitBidModal"
+
 export default {
-  name: "MainPage"
+  name: "MainPage",
+  data() {
+    return {
+      property: []
+    };
+  },
+  components: {
+    ProductCard, SubmitBidModal
+  },
+  // props: ["PropertyData"],
+  methods: {
+    getProperty() {
+      axios({
+        method: "GET",
+        url: "http://localhost:3000/products" //belum ditambahi headers
+      })
+        .then(({ data }) => {
+          // console.log(data);
+          this.property = data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    updateBid(){
+
+    }
+  },
+  created() {
+    this.getProperty(); // belum ditambah localstorage getItem
+  }
 };
 </script>
 
