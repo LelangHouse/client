@@ -17,6 +17,7 @@ export default {
       console.log("login sampai app.vue");
     }
   }
+}
 </script>
 
 <style></style>
