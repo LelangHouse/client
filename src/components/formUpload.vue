@@ -64,6 +64,8 @@ export default {
       })
         .then(({ data }) => {
           this.$emit('fetch-data-again')
+          this.price = null
+          this.image = null
           Swal.fire({
             icon: "success",
             title: `Success posted a house`,
@@ -76,7 +78,7 @@ export default {
           Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'Internal server error'
+              text: 'Please input your house\'s data'
           })
         })
     }
