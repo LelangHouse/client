@@ -5,16 +5,16 @@
               <div class="box border p-3 shadow text-center">
                   <p style="font-family: 'Righteous', cursive;">Upload your house</p>
                   <hr>
-                <form>
+                <!-- <form>
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
                             <label for="file" class="sr-only">File</label>
                             <div class="input-group">
-                                <input type="text" name="filename" class="form-control" placeholder="No file selected" readonly>
+                                <input v-model='image' type="text" name="filename" class="form-control" placeholder="No file selected" readonly>
                                 <span class="input-group-btn">
                                 <div class="btn btn-default  custom-file-uploader py-0">
-                                    <input type="file" name="file" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
+                                    <input  type="file" name="file" onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''" />
                                 <span class="btn btn-primary"> Select a file </span>
                                 </div>
                                 </span>
@@ -24,19 +24,30 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Rp</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input v-model='price' type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                         <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                         </div>
                         </div>
                       </div>
                     </div>
-                    <button style="--content: 'Submit Your House';">
+                   
+                </form> -->
+                <b-row>
+        <b-col>
+                <b-form-file
+                v-model="image"
+                :state="Boolean(image)"
+                placeholder="Choose a file or drop it here..."
+                drop-placeholder="Drop file here..."
+                ></b-form-file>
+        </b-col>
+    </b-row>
+ <button @click="addHouse" style="--content: 'Submit Your House';">
                         <div class="left"></div>
                             Submit Your House
                         <div class="right"></div>
                     </button>
-                </form>
                </div> 
             </div>
         </div>
@@ -46,8 +57,43 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Swal from "sweetalert2"
+import FormData2 from "form-data"
+
 export default {
     name: 'formUpload',
+    data() {
+        return{
+            price: null,
+            image: null,   
+        }
+    },
+    methods:{
+        addHouse() {
+            console.log('masuk')
+            const fromData = new FormData2()
+            fromData.append('image', this.image)
+            formData.set('price',this.price)
+
+            axios({
+                method:"post",
+                url: "http://localhost:3000/products",
+                data: formData,
+                headers:{
+                    token:localStorage.getItem('token')
+                }
+            })
+            .then(({data})=>{
+              Swal.fire({
+                        icon: 'success',
+                        title: `Success posted a new article`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+            })
+        }
+    }
 }
 </script>
 

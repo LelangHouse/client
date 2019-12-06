@@ -1,5 +1,8 @@
 <template>
   <div>
+
+    <formUpload></formUpload>
+
     <div class="container mt-5">
       <div class="card-columns">
         <ProductCard
@@ -23,6 +26,7 @@
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import SubmitBidModal from "../components/SubmitBidModal";
+import formUpload from "../components/formUpload"
 
 export default {
   name: "MainPage",
@@ -34,7 +38,8 @@ export default {
   },
   components: {
     ProductCard,
-    SubmitBidModal
+    SubmitBidModal,
+    formUpload
   },
   // props: ["PropertyData"],
   methods: {
