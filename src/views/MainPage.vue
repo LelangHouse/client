@@ -41,7 +41,8 @@ export default {
     getProperty() {
       axios({
         method: "GET",
-        url: "http://localhost:3000/products" //belum ditambahi headers
+        url: "http://localhost:3000/products",
+        headers: { access_token: localStorage.getItem("access_token") }
       })
         .then(({ data }) => {
           this.property = data;
@@ -56,7 +57,8 @@ export default {
     }
   },
   created() {
-    this.getProperty(); // belum ditambah localstorage getItem
+    localStorage.setItem("access_token", user.access_token);
+    this.getProperty();
   }
 };
 </script>
