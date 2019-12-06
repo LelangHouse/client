@@ -7,42 +7,31 @@
   >
     <form v-on:submit.prevent="register">
       <div class="form-group">
-        <input
-          type="text"
-          name="username"
-          id="name"
-          class="form-control"
-          placeholder="Username"
-          v-model="username"
-          required
-          autofocus
-        />
-      </div>
-
-      <div class="form-group">
+        <label for="email">Your email :</label>
         <input
           type="email"
           name="email"
           id="email"
           class="form-control"
-          placeholder="Email"
+          placeholder="email@mail.com"
           v-model="email"
           required
         />
       </div>
       <div class="form-group">
+        <label for="phone">Your phone number:</label>
         <input
           type="text"
           name="phone"
           id="phone"
           class="form-control"
-          placeholder="Phone"
           v-model="phone"
           required
         />
       </div>
 
       <div class="form-group">
+        <label for="password">Password :</label>
         <input
           type="password"
           name="password"
@@ -72,7 +61,7 @@ export default {
       email: "",
       password: "",
       username: "",
-      phone: ""
+      phone: "+62"
     };
   },
   methods: {
