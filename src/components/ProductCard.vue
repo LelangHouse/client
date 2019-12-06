@@ -1,13 +1,41 @@
 <template>
-  
+  <div>
+    <div class="card mt-3">
+      <img
+        class="card-img-top"
+        alt="Card image cap"
+        :src="databapak.image"
+        width="100px"
+      />
+      <div class="card-body">
+        <h3 class="card-title">{{ databapak.bid }} IDR</h3>
+        <div class="row mb-2">
+          <div class="col-sm-6">Offered Price</div>
+          <div class="col-sm-6">{{ databapak.price }} IDR</div>
+        </div>
+      </div>
+      <b-button
+        @click="UpdateBidModal"
+        type="button"
+        class="btn btn-info btn-lg btn-block"
+      >
+        Bid
+      </b-button>
+      <div></div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-
-}
+  props: ["databapak"],
+  component: {},
+  methods: {
+    UpdateBidModal() {
+      this.$emit("show-update-modal", this.databapak);
+    }
+  }
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
