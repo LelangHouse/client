@@ -44,6 +44,7 @@ export default {
   // props: ["PropertyData"],
   methods: {
     getProperty() {
+      console.log('=========', localStorage.getItem("token"));
       axios({
         method: "GET",
         url: "http://localhost:3000/products",
