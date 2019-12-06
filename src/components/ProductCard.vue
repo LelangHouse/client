@@ -28,18 +28,18 @@
         <b-row>
           <b-col
             ><b-button
-              @click="UpdateBidModal"
+              @click="shareWa"
               type="button"
               class="btn btn-info btn-lg btn-block"
             >
-              W</b-col>
+              <i class="fab fa-whatsapp"></i>
+              </b-col>
           <b-col
             ><b-button
-              @click="UpdateBidModal"
               type="button"
               class="btn btn-info btn-lg btn-block"
             >
-              T
+              <i class="fab fa-facebook-f"></i>
             </b-button></b-col
           >
         </b-row>
@@ -49,12 +49,32 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   props: ["databapak"],
   component: {},
   methods: {
     UpdateBidModal() {
       this.$emit("show-update-modal", this.databapak);
+    },
+    shareWa(){
+      axios({
+        url: "http://localhost:3000/products/shareWa",
+        method: "POST",
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: {
+         url : `${this.databapak.image}`
+        }
+      })
+      .then(data=>{
+        console.log(data)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
     }
   }
 };

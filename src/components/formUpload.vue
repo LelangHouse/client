@@ -63,6 +63,7 @@ export default {
         }
       })
         .then(({ data }) => {
+          this.$emit('fetch-data-again')
           Swal.fire({
             icon: "success",
             title: `Success posted a house`,
