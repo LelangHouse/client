@@ -31,6 +31,9 @@ export default {
         url: `http://localhost:3000/products/${this.bidData._id}`,
         data: {
           bid: this.newBid
+        },
+        headers: {
+          token: localStorage.getItem('token')
         }
       })
         .then(result => {
