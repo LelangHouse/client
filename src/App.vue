@@ -1,6 +1,9 @@
 <template>
   <div>
-    <LoginRegisterpage @set-login="setLogin" v-show="!isLogin"></LoginRegisterpage>
+    <LoginRegisterpage
+      @set-login="setLogin"
+      v-show="!isLogin"
+    ></LoginRegisterpage>
     <MainPage v-show="isLogin"></MainPage>
   </div>
 </template>

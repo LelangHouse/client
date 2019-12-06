@@ -42,7 +42,7 @@ export default {
       axios({
         method: "GET",
         url: "http://localhost:3000/products",
-        headers: { access_token: localStorage.getItem("access_token") }
+        headers: { token: localStorage.getItem("token") }
       })
         .then(({ data }) => {
           this.property = data;
@@ -57,8 +57,9 @@ export default {
     }
   },
   created() {
-    localStorage.setItem("access_token", user.access_token);
-    this.getProperty();
+    if (localStorage.getItem("token")) {
+      this.getProperty();
+    }
   }
 };
 </script>
