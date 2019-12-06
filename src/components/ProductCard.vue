@@ -14,15 +14,14 @@
           <div class="col-sm-6">{{ databapak.price }} IDR</div>
         </div>
       </div>
-      <a href="#" style="text-decoration: none"
-        ><b-button
-          @click="UpdateBidModal"
-          type="button"
-          class="btn btn-info btn-lg btn-block"
-        >
-          Bid
-        </b-button></a
+      <b-button
+        @click="UpdateBidModal"
+        type="button"
+        class="btn btn-info btn-lg btn-block"
       >
+        Bid
+      </b-button>
+      <div></div>
     </div>
   </div>
 </template>
