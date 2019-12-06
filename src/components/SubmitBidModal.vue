@@ -17,6 +17,8 @@
 
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2'
+
 export default {
   props: ["bidData"],
   data() {
@@ -39,9 +41,20 @@ export default {
         .then(result => {
           this.newBid = null;
           this.$emit("fetch-data-again");
+          Swal.fire({
+            icon: "success",
+            title: `Bid submitted`,
+            showConfirmButton: false,
+            timer: 1500
+          });
         })
         .catch(err => {
           console.log(err);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong"
+          });
         });
     }
   }

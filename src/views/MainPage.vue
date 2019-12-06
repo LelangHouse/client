@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <navbarZ></navbarZ>
     <formUpload @fetch-data-again="getProperty"></formUpload>
 
     <div class="container mt-5">
@@ -24,6 +24,7 @@
 
 <script>
 import axios from "axios";
+import navbarZ from "../components/Navbar"
 import ProductCard from "../components/ProductCard";
 import SubmitBidModal from "../components/SubmitBidModal";
 import formUpload from "../components/formUpload"
@@ -37,6 +38,7 @@ export default {
     };
   },
   components: {
+    navbarZ,
     ProductCard,
     SubmitBidModal,
     formUpload
