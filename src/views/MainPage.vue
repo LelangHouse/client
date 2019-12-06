@@ -41,7 +41,8 @@ export default {
     getProperty() {
       axios({
         method: "GET",
-        url: "http://localhost:3000/products" //belum ditambahi headers
+        url: "http://localhost:3000/products",
+        headers: { token: localStorage.getItem("token") }
       })
         .then(({ data }) => {
           this.property = data;
@@ -56,7 +57,9 @@ export default {
     }
   },
   created() {
-    this.getProperty(); // belum ditambah localstorage getItem
+    if (localStorage.getItem("token")) {
+      this.getProperty();
+    }
   }
 };
 </script>
