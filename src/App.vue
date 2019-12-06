@@ -2,9 +2,9 @@
   <div>
     <LoginRegisterpage
       @set-login="setLogin"
-      v-show="!isLogin"
+      v-if="!isLogin"
     ></LoginRegisterpage>
-    <MainPage v-show="isLogin"></MainPage>
+    <MainPage v-if="isLogin"></MainPage>
   </div>
 </template>
 

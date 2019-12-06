@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <formUpload></formUpload>
+    <formUpload @fetch-data-again="getProperty"></formUpload>
 
     <div class="container mt-5">
       <div class="card-columns">
