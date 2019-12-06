@@ -73,7 +73,7 @@ export default {
           email: this.email,
           password: this.password,
           username: this.username,
-          phone: this.phone
+          phoneNumber: this.phone
         }
       })
         .then(({ data }) => {
