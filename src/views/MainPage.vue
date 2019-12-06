@@ -4,13 +4,17 @@
       <div class="card-columns">
         <ProductCard
           v-for="(data, index) in property"
-          :key=index
-          :databapak=data
+          :key="index"
+          :databapak="data"
+          @show-update-modal="updateBid"
         ></ProductCard>
       </div>
     </div>
-    <div :show-update-modal="updateBid">
-      <SubmitBidModal></SubmitBidModal>
+    <div>
+      <SubmitBidModal
+        :bid-data="biddingData"
+        @fetch-data-again="getProperty"
+      ></SubmitBidModal>
     </div>
   </div>
 </template>
@@ -18,17 +22,19 @@
 <script>
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
-import SubmitBidModal from "../components/SubmitBidModal"
+import SubmitBidModal from "../components/SubmitBidModal";
 
 export default {
   name: "MainPage",
   data() {
     return {
-      property: []
+      property: [],
+      biddingData: null
     };
   },
   components: {
-    ProductCard, SubmitBidModal
+    ProductCard,
+    SubmitBidModal
   },
   // props: ["PropertyData"],
   methods: {
@@ -38,15 +44,15 @@ export default {
         url: "http://localhost:3000/products" //belum ditambahi headers
       })
         .then(({ data }) => {
-          // console.log(data);
           this.property = data;
         })
         .catch(err => {
           console.log(err);
         });
     },
-    updateBid(){
-
+    updateBid(databapak) {
+      this.biddingData = databapak;
+      this.$bvModal.show("modal-1");
     }
   },
   created() {
