@@ -34,14 +34,15 @@
             >
               <i class="fab fa-whatsapp"></i>
               </b-col>
-          <b-col
-            ><b-button
-              type="button"
-              class="btn btn-info btn-lg btn-block"
-            >
-              <i class="fab fa-facebook-f"></i>
-            </b-button></b-col
-          >
+          <b-col>
+               <div class="fb-share-button btn btn-info btn-lg btn-block mb-1" 
+    :data-href= "databapak.image"
+    data-layout="button_count">
+  </div>
+            </b-col>
+         <!-- <div v-if='imgUrl'> -->
+         <!-- </div> -->
+          
         </b-row>
       </div>
     </div>
@@ -53,6 +54,11 @@ import axios from 'axios'
 
 export default {
   props: ["databapak"],
+  data() {
+    return{
+   
+    }
+  },
   component: {},
   methods: {
     UpdateBidModal() {
@@ -75,7 +81,21 @@ export default {
       .catch(err=>{
         console.log(err)
       })
+    },
+    shareFb(){
+      this.imgUrl = this.databapak.image
+      console.log(this.imgUrl)
     }
+  },
+  mounted(){
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
   }
 };
 </script>
@@ -83,4 +103,5 @@ export default {
   button {
     border-radius: 0px;
   }
+  
 </style>
