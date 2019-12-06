@@ -1,10 +1,7 @@
 <template>
   <div>
-    <LoginRegisterpage
-      @set-login="setLogin"
-      v-show="!isLogin"
-    ></LoginRegisterpage>
-    <MainPage v-show="isLogin"></MainPage>
+    <LoginRegisterpage @set-login="setLogin" v-if="!isLogin"></LoginRegisterpage>
+    <MainPage v-if="isLogin"></MainPage>
   </div>
 </template>
 
@@ -24,6 +21,13 @@ export default {
   methods: {
     setLogin() {
       this.isLogin = true;
+    }
+  },
+  created() {
+    if (localStorage.getItem("token")) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
     }
   }
 };
