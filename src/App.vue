@@ -1,7 +1,7 @@
 <template>
   <div>
-    <LoginRegisterpage @set-login="setLogin"></LoginRegisterpage>
-    <MainPage></MainPage>
+    <LoginRegisterpage @set-login="setLogin" v-show="!isLogin"></LoginRegisterpage>
+    <MainPage v-show="isLogin"></MainPage>
   </div>
 </template>
 
@@ -9,15 +9,21 @@
 import LoginRegisterpage from "./views/LoginRegisterpage";
 import MainPage from "./views/MainPage";
 export default {
+  data() {
+    return {
+      isLogin: false
+    };
+  },
   components: {
-    LoginRegisterpage, MainPage
+    LoginRegisterpage,
+    MainPage
   },
   methods: {
     setLogin() {
-      console.log("login sampai app.vue");
+      this.isLogin = true;
     }
   }
-}
+};
 </script>
 
 <style></style>
