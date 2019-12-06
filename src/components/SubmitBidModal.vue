@@ -53,7 +53,7 @@ export default {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Something went wrong"
+            text: 'You cannot submit value lower than current bid'
           });
         });
     }
